@@ -7,19 +7,20 @@ let opts = {
   type: 'video'
 };
 module.exports = {
-	name: 'play',
-	description: 'Play command.',
-	usage: '[command name]',
+	name: 'tocar',
+	description: 'Tocar uma música',
+	usage: ''+process.env.DISCORD_PREFIX+'tocar + link ou titulo Ex.: '+process.env.DISCORD_PREFIX+'tocar Hello ou '+process.env.DISCORD_PREFIX+'tocar https://www.youtube.com/watch?v=ZbZSe6N_BXs',
 	args: true,
 	cooldown: 5,
 	async execute(message, args) {
 		const { channel } = message.member.voice;
-		if (!channel) return message.channel.send('I\'m sorry but you need to be in a voice channel to play music!');
+		if (!channel) return message.channel.send('Sinto muito, mas você precisa estar em um canal de voz para tocar música!');
 		const permissions = channel.permissionsFor(message.client.user);
-		if (!permissions.has('CONNECT')) return message.channel.send('I cannot connect to your voice channel, make sure I have the proper permissions!');
-		if (!permissions.has('SPEAK')) return message.channel.send('I cannot speak in this voice channel, make sure I have the proper permissions!');
+		if (!permissions.has('CONNECT')) return message.channel.send('Não consigo me conectar ao seu canal de voz, verifique se tenho as permissões adequadas!');
+		if (!permissions.has('SPEAK')) return message.channel.send('Não posso falar neste canal de voz, verifique se tenho as permissões adequadas!');
 
-		let song = await search(args[0].replace(/<(.+)>/g, '$1'), opts, async function(err, results) {
+		//let song = await search(args[0].replace(/<(.+)>/g, '$1'), opts, async function(err, results) {
+		let song = await search(args[0], opts, async function(err, results) {  
 		  if(err) return console.log(err);
 		  console.dir(results[0].id);
 		  console.dir(results[0].link);
@@ -36,7 +37,7 @@ module.exports = {
 		if (serverQueue) {
 			serverQueue.songs.push(song);
 			console.log(serverQueue.songs);
-			return message.channel.send(`✅ **${song.title}** has been added to the queue!`);
+			return message.channel.send(`✅ **${song.title}** foi adicionado à fila`);
 		}
 
 		const queueConstruct = {
@@ -65,7 +66,7 @@ module.exports = {
 				})
 				.on('error', error => console.error(error));
 			dispatcher.setVolumeLogarithmic(queue.volume / 5);
-			queue.textChannel.send(`🎶 Start playing: **${song.title}**`);
+			queue.textChannel.send(`🪕 Começando a tocar: **${song.title}**`);
 		};
 
 		try {
@@ -73,10 +74,10 @@ module.exports = {
 			queueConstruct.connection = connection;
 			play(queueConstruct.songs[0]);
 		} catch (error) {
-			console.error(`I could not join the voice channel: ${error}`);
+			console.error(`Não consegui entrar no canal de voz: ${error}`);
 			message.client.queue.delete(message.guild.id);
 			await channel.leave();
-			return message.channel.send(`I could not join the voice channel: ${error}`);
+			return message.channel.send(`Não consegui entrar no canal de voz: ${error}`);
 		}
 		});
 		
