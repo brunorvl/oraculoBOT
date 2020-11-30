@@ -1,0 +1,37 @@
+{
+	"name": "discord-oraculo-bot",
+	"version": "0.1.0",
+	"description": "Bot discord para jogos de RPG.",
+	"main": "src/index.js",
+	"author": "bruno.rafaelvl@hotmail.com",
+	"license": "MIT",
+	"private": true,
+	"scripts": {
+		"start": "node ."
+	},
+	"dependencies": {
+		"discord.js": "^12.3.1",
+		"dotenv": "^8.2.0",
+		"ffmpeg": "0.0.4",
+		"ffmpeg-static": "^4.2.7",
+		"youtube-search": "^1.1.4",
+		"ytdl-core": "^4.1.0"
+	},
+	"devDependencies": {
+		"eslint": "^7.10.0",
+		"eslint-config-aqua": "^7.3.0"
+	},
+	"optionalDependencies": {
+		"@discordjs/opus": "^0.3.2",
+		"erlpack": "github:discord/erlpack",
+		"zlib-sync": "^0.1.7"
+	},
+	"eslintConfig": {
+		"extends": "aqua/node"
+	},
+	"renovate": {
+		"extends": [
+			"teal"
+		]
+	}
+}

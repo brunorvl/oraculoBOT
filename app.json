@@ -1,0 +1,29 @@
+{
+  "name": "Node.js Discord Oraculo Bot ",
+  "description": "A discord Node.js RPG bot app",
+  "repository": "",
+  "logo": "",
+  "keywords": ["node", "discord", "youtube"],
+  "image": "heroku/nodejs",
+  "buildpacks": [
+    {
+      "url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git"
+    },
+    {
+      "url": "heroku/nodejs"
+    },
+    {
+      "url": "https://github.com/ytdl-org/youtube-dl.git"
+    }
+  ],
+  "env": {
+    "DISCORD_TOKEN": {
+      "description": "The token copied in the first section.",
+      "required": "true"
+    },
+    "DISCORD_PREFIX": {
+      "description": "The prfix you want to use with the bot.",
+      "value": "!"
+    }
+  }  
+}
