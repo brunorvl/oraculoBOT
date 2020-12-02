@@ -21,7 +21,7 @@ module.exports = {
 
 		//let song = await search(args[0].replace(/<(.+)>/g, '$1'), opts, async function(err, results) {
 		console.log(args);
-		let song = await search(args[0], opts, async function(err, results) {  
+		let song = await search(args, opts, async function(err, results) {  
 		  if(err) return console.log(err);
 		  console.dir(results[0].id);
 		  console.dir(results[0].link);
@@ -67,7 +67,7 @@ module.exports = {
 				})
 				.on('error', error => console.error(error));
 			dispatcher.setVolumeLogarithmic(queue.volume / 5);
-			queue.textChannel.send(`🪕 Começando a tocar: **${song.title}**`);
+			queue.textChannel.send(`🪕 Começando a tocar: **${song.title}** \n Link: **${song.url}**`);
 		};
 
 		try {
