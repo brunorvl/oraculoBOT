@@ -21,7 +21,12 @@ module.exports = {
 
 		//let song = await search(args[0].replace(/<(.+)>/g, '$1'), opts, async function(err, results) {
 		console.log(args);
-		let song = await search(args, opts, async function(err, results) {  
+		var searchname = " ";		
+		for(var i = 0;i < args.length;i++) {
+			searchname = searchname +" "+args[i];
+		}	
+		console.log(searchname);
+		let song = await search(searchname, opts, async function(err, results) {  
 		  if(err) return console.log(err);
 		  console.dir(results[0].id);
 		  console.dir(results[0].link);
