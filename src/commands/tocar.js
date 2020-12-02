@@ -20,6 +20,7 @@ module.exports = {
 		if (!permissions.has('SPEAK')) return message.channel.send('Não posso falar neste canal de voz, verifique se tenho as permissões adequadas!');
 
 		//let song = await search(args[0].replace(/<(.+)>/g, '$1'), opts, async function(err, results) {
+		console.log(args);
 		let song = await search(args[0], opts, async function(err, results) {  
 		  if(err) return console.log(err);
 		  console.dir(results[0].id);
