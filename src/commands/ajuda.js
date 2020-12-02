@@ -16,11 +16,8 @@ module.exports = {
                 let props = require(`./${file}`);
                 let commandName = file.split(".")[0];
                 allcmds+="``"+process.env.DISCORD_PREFIX+commandName+" `` ~ "+props.usage+"\n";
-                //console.log("Loading Command: "+commandName+" - "+props.usage);
-                //console.log(allcmds);
             });
-            console.log(allcmds);
-
+            
             let commandinfo = new MessageEmbed()
                             .setTitle("Listagem de comandos do Bot")
                             .setColor("gray")
