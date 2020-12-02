@@ -19,8 +19,6 @@ module.exports = {
 		if (!permissions.has('CONNECT')) return message.channel.send('Não consigo me conectar ao seu canal de voz, verifique se tenho as permissões adequadas!');
 		if (!permissions.has('SPEAK')) return message.channel.send('Não posso falar neste canal de voz, verifique se tenho as permissões adequadas!');
 
-		//let song = await search(args[0].replace(/<(.+)>/g, '$1'), opts, async function(err, results) {
-		console.log(args);
 		var searchname = " ";
 		if (args[0].indexOf('https') >= 0) { 		
 			searchname = args[0];				
