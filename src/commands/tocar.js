@@ -22,10 +22,10 @@ module.exports = {
 		//let song = await search(args[0].replace(/<(.+)>/g, '$1'), opts, async function(err, results) {
 		console.log(args);
 		var searchname = " ";
-		if (args.length > 0) { 		
-			for(var i = 0;i < args.length;i++) { searchname = searchname +" "+args[i]; }	
+		if (args[0].indexOf('https') >= 0) { 		
+			searchname = args[0];				
 		} else {
-			searchname = args;
+			for(var i = 0;i < args.length;i++) { searchname = searchname +" "+args[i]; }
 		}		
 		console.log(searchname);
 		let song = await search(searchname, opts, async function(err, results) {  
