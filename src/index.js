@@ -6,67 +6,6 @@ const { Collection } = require('discord.js');
 const client = new MusicClient({ token: process.env.DISCORD_TOKEN, prefix: process.env.DISCORD_PREFIX });
 global.CLIENT_ID = 0; 
 
-const mongoose = require('mongoose');
-
-/*
-var url = 'mongodb://localhost:27017/teste';
-
-mongoose.connect(url, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useFindAndModify: false,
-  useCreateIndex: true
-});
-
-const Schema = mongoose.Schema;
-const ObjectId = Schema.ObjectId;
-
-const sistema = new Schema({
-	name: { type: String, default: 'hahaha' },
-	age: { type: Number, min: 18, index: true },
-	bio: { type: String, match: /[a-z]/ },
-	date: { type: Date, default: Date.now },
-	buff: Buffer
-  });
-  
-const MyModel = mongoose.model('sistema');
-const m = new MyModel;
-m.sistema.push({ title: 'My comment' });
-
-m.save(function (err) {
-  if (!err) console.log('Success!');
-});
-*/
-
-var url = 'mongodb://localhost:27017/teste';
-
-mongoose.connect(url, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useFindAndModify: false,
-  useCreateIndex: true
-});
-
-var Schema = mongoose.Schema;  
-  
-var userDataSchema = new Schema({  
- nome: {type: String, required: true},  
- email: String,  
- telefone: String  
-}, {collection: 'contatos'});  
-  
-var Contatos = mongoose.model('UserData', userDataSchema);  
-
-var item = {  
-   nome: 'Irado',  
-   email: 'irado@gmail.com',  
-   telefone: '(81) 4444-55555'  
-};  
-  
- var data = new Contatos(item);  
- data.save();
-
-
 const commandFiles = readdirSync(join(__dirname, 'commands')).filter(file => file.endsWith('.js'));
 for (const file of commandFiles) {
 	const command = require(join(__dirname, 'commands', `${file}`));

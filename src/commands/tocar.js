@@ -6,6 +6,11 @@ let opts = {
   key: 'AIzaSyCwruUG_wYFitHNF2ByWHCk25yJYybtLEo',
   type: 'video'
 };
+
+const options = {
+	filter: 'audioonly'
+  };
+
 module.exports = {
 	name: 'tocar',
 	description: 'Tocar uma música',
@@ -65,7 +70,7 @@ module.exports = {
 				return;
 			}
 
-			const dispatcher = queue.connection.play(ytdl(song.url))
+			const dispatcher = queue.connection.play(ytdl(song.url, options))
 				.on('finish', () => {
 					queue.songs.shift();
 					play(queue.songs[0]);
